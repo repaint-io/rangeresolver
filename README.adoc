@@ -1,0 +1,23 @@
+= Range-Resolver Maven Plugin
+
+== Overview
+
+The _rangeresolver-maven-plugin_ is a Maven Plugin that aims to ease some pain points
+encountered when using version ranges - early identification of unintended API breakages.
+
+== How?
+
+The basic idea is:
+
+- always compile against the lower bound of a given range
+- always test/package against the upper bound of a given range
+
+When working on a code sprint, often you adapt your API concurrently with the
+implementation hand in hand, without thought about the impact against downstream users.
+
+- By always compiling against the lower bound, you're enforcing the source/binary contract
+  for a consistent API, any breakages should trigger an update to the lower bound of your
+  range.
+- By testing/packaging against the upper bound, you're enforcing the _semantic_ contract
+  for non-breaking changes.
+
